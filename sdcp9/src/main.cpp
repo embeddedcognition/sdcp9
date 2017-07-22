@@ -37,8 +37,8 @@ int main()
 
   //init the control gains
   double Kp = 0.145; //0.185;
-  double Ki = 0; //0.00001;
-  double Kd = 3.0; //3.2; //2.85;
+  double Ki = 0.0001; //0.00001;
+  double Kd = 3.1; //3.2; //2.85;
 
   //set the control gains
   pid.Init(Kp, Ki, Kd);
