@@ -1,0 +1,54 @@
+##############################################
+## AUTHOR: James Beasley                    ##
+## DATE: July 23, 2017                      ##
+## UDACITY SDC: Project 9 (PID Controllers) ##
+## REFLECTION                               ##
+##############################################
+
+Reflection on the PID Controllers project:
+
+To ascertain the control gains for my PID controller, I started with the gains we worked with during 
+Sebastian's lectures and adjusted them by hand to fit this project. I thought this would be a good approach 
+to give me better intuition on what each term of the PID equation was doing vs. having an algorithm (like twiddle) 
+do it for me.
+
+The gains I started with were:
+Kp = 0.2
+Ki = 0.004
+Kd = 3.0
+
+When I tried these values in the simulator for the first time, the car almost immediately banked left and went off 
+the road. After some experimentation, I discovered that the culprit was the integral gain setting. By setting it to 
+zero (for the time being), I was able to get the car to make it around the track without leaving the drive-able surface.
+
+Thought I felt good about where I was, the car was still quite jerky on the track, so I started experimenting with how 
+to get it to smooth out. I found that when I started to step down the proportional gain I saw improvement, but after a 
+few steps down I began seeing degradation (back to jerky driving or not turning hard enough at corners) so I decided 
+that I needed to look at multiple gains at once (i.e., adjusting the derivative gain as well). First I stepped the 
+derivative gain down, then stepped it up. The relationship I found between the proportional and derivative gains was 
+indirect; when I stepped down the proportional gain, I needed to step up the derivative gain to maintain the car's 
+ability to stay on the road.
+
+After further experimentation, I settled on the following two values for the proportional and derivative gains:
+Kp = 0.145
+Kd = 3.15
+
+These settings smoothed out the driving immensely compared to the previous settings.
+
+I then decided to see what would happen if I started applying larger values of the integral gain than I had
+originally tried with the values from the lectures. I found that a value of 0.0001 seemed to improve my results
+better than just leaving it at zero.
+
+My final values for my PID controller are listed below:
+Kp = 0.145;
+Ki = 0.0001;
+Kd = 3.15;
+
+If I had more time, I would have liked to experiment with a PID controller for throttle as well, but I left it at 
+30 MPH. I tried bumping up the throttle to higher values, but the car became erratic after a while, so I decided to halt that pursuit.
+
+All in all, this was a pretty cool project!
+
+Below is a video of the final output:
+
+https://www.youtube.com/watch?v=is1YOXYN47g
