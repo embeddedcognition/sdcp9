@@ -1,3 +1,11 @@
+/*
+##############################################
+## AUTHOR: James Beasley                    ##
+## DATE: July 23, 2017                      ##
+## UDACITY SDC: Project 9 (PID Controllers) ##
+##############################################
+*/
+
 #ifndef PID_H
 #define PID_H
 

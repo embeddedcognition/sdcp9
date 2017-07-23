@@ -1,3 +1,11 @@
+/*
+##############################################
+## AUTHOR: James Beasley                    ##
+## DATE: July 23, 2017                      ##
+## UDACITY SDC: Project 9 (PID Controllers) ##
+##############################################
+*/
+
 #include <uWS/uWS.h>
 #include <iostream>
 #include "json.hpp"
@@ -36,9 +44,9 @@ int main()
   PID pid;
 
   //init the control gains
-  double Kp = 0.145; //0.185;
-  double Ki = 0.0001; //0.00001;
-  double Kd = 3.1; //3.2; //2.85;
+  const double Kp = 0.145;
+  const double Ki = 0.0001;
+  const double Kd = 3.15;
 
   //set the control gains
   pid.Init(Kp, Ki, Kd);
@@ -59,17 +67,11 @@ int main()
           double speed = std::stod(j[1]["speed"].get<std::string>());
           double angle = std::stod(j[1]["steering_angle"].get<std::string>());
           double steer_value;
-          /*
-          * TODO: Calcuate steering value here, remember the steering value is
-          * [-1, 1].
-          * NOTE: Feel free to play around with the throttle and speed. Maybe use
-          * another PID controller to control the speed!
-          */
           
-          //update cross track error
+          //update cross track error (given to us by the simulator)
           pid.UpdateError(cte);
 
-          //get back steering value
+          //compute steering angle using the PID control equation
           steer_value = pid.TotalError();
 
           // DEBUG
