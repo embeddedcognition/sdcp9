@@ -19,13 +19,14 @@ Kd = 3.0
 
 When I tried these values in the simulator for the first time, the car almost immediately banked left and went off 
 the road. After some experimentation, I discovered that the culprit was the integral gain setting. By setting it to 
-zero (for the time being), I was able to get the car to make it around the track without leaving the drive-able surface.
+zero (and keeping the other values the same), I was able to get the car to make it around the track without leaving 
+the drive-able surface.
 
 Thought I felt good about where I was, the car was still quite jerky on the track, so I started experimenting with how 
 to get it to smooth out. I found that when I started to step down the proportional gain I saw improvement, but after a 
-few steps down I began seeing degradation (back to jerky driving or not turning hard enough at corners) so I decided 
+few steps down I began seeing degradation again (back to jerky driving or not turning hard enough at corners) so I decided 
 that I needed to look at multiple gains at once (i.e., adjusting the derivative gain as well). First I stepped the 
-derivative gain down, then stepped it up. The relationship I found between the proportional and derivative gains was 
+derivative gain down, then stepped it up. The relationship I discovered between the proportional and derivative gains was 
 indirect; when I stepped down the proportional gain, I needed to step up the derivative gain to maintain the car's 
 ability to stay on the road.
 
@@ -35,17 +36,18 @@ Kd = 3.15
 
 These settings smoothed out the driving immensely compared to the previous settings.
 
-I then decided to see what would happen if I started applying larger values of the integral gain than I had
+I then decided to see what would happen if I started applying smaller values of the integral gain than I had
 originally tried with the values from the lectures. I found that a value of 0.0001 seemed to improve my results
 better than just leaving it at zero.
 
-My final values for my PID controller are listed below:
-Kp = 0.145;
-Ki = 0.0001;
-Kd = 3.15;
+The final values for my PID controller are listed below:
+Kp = 0.145
+Ki = 0.0001
+Kd = 3.15
 
 If I had more time, I would have liked to experiment with a PID controller for throttle as well, but I left it at 
-30 MPH. I tried bumping up the throttle to higher values, but the car became erratic after a while, so I decided to halt that pursuit.
+the default (30 MPH). I tried bumping up the throttle to higher values manually, but the car became erratic after a while, 
+so I decided to halt that pursuit and just leave it as is.
 
 All in all, this was a pretty cool project!
 
